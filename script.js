@@ -2,11 +2,26 @@
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
+let ready =false;
+let imagesloaded =0;
 let PhotosArray = [];
 
 const per_page = 26;
 const apiKey= 'TpepHUfYFDBGVStOfivGpZjTkfgdCL87qruAxAD_HkQ';
 const apiUrl =`https://api.unsplash.com//users/nigelm23/photos/?client_id=${apiKey}&per_page=${per_page}`;
+
+function imageloaded(){
+console.log('image loaded');
+imagesloaded++;
+console.log(imagesloaded)
+if(imagesloaded === totalImages){
+    ready = true
+    loader.hidden=true;
+    console.log('ready = ', ready);
+
+}
+}
+
 
 // helper function to set attributre on dom elements 
 
@@ -17,6 +32,8 @@ for (const key in attributes){
 }
 // create Elements For Links $ photos to the DOM 
 function displayPhotos() {
+    imagesloaded = 0;
+    totalImages = PhotosArray.length;
 // run item for each object in PhotosArray
 PhotosArray.forEach((photo) => {
 // create <a> element 
@@ -35,6 +52,12 @@ setAttributes(img, {
     alt: photo.alt_description, 
     title: photo.alt_description, 
 })
+
+
+img.addEventListener('load' ,imageloaded);
+
+
+
 // put img inside a 
 item.appendChild(img);
 imageContainer.appendChild(item);
@@ -58,7 +81,8 @@ async function getPhotos(){
 
 // sroll magic
 window.addEventListener('scroll', () => {
-if(window.innerHeight + window.scrollY >= document.body.offsetHeight -1000) {
+if(window.innerHeight + window.scrollY >= document.body.offsetHeight -1000 && ready) {
+    ready=false;
 getPhotos()
 }
 });

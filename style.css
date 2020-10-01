@@ -17,6 +17,7 @@ h1{
     margin-bottom: 15px;
     font-size: 40px;
     letter-spacing: 5px;;
+    color: lightgray;
 }
 /* loader  */
 .loader{
@@ -38,14 +39,17 @@ h1{
 
 /* image container */
 .image-container{
-    margin: 10px 30%;
+    display: flex;
+flex-wrap: wrap;
+justify-content: center;
 
 
 }
 
 .image-container img {
-    width: 100%;
-    margin-top: 5px;
+  width: 450px;
+  height: auto;
+  margin: 10px;
 }
 
 /* media query  */
