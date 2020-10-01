@@ -3,12 +3,12 @@ const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
 let ready =false;
-let imagesloaded =0;
+let count =10;
 let PhotosArray = [];
 
 const per_page = 26;
 const apiKey= 'TpepHUfYFDBGVStOfivGpZjTkfgdCL87qruAxAD_HkQ';
-const apiUrl =`https://api.unsplash.com//users/nigelm23/photos/?client_id=${apiKey}&per_page=${per_page}`;
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
 
 function imageloaded(){
 console.log('image loaded');
